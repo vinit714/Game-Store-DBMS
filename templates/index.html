@@ -27,6 +27,22 @@
         </div>
     </nav>
 
+    <form id="gamebuy" action="gamebuy" onsubmit="buygame()" method="post">
+        <img id="hadesimg" src="{{ url_for('static', filename='/gamephoto/hades.jpg') }}">
+
+        <div style="position:absolute;">
+            <input type="submit" id="gamename" name="gamename" value="HADES">
+
+    </form>
+
+    <form id="gamebuy" action="gamebuy" onsubmit="buygame()" method="post">
+        <img id="gowimg" src="{{ url_for('static', filename='/gamephoto/GOW.jpg') }}">
+
+        <div style="position:absolute;">
+            <input type="submit" id="gamename" name="gamename" value="GOW">
+
+    </form>
+
     <h1>MINI PROJECT DBMS</h1>
 
 </body>
