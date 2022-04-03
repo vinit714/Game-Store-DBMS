@@ -20,6 +20,8 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'AJcena714!!'
 app.config['MYSQL_DB'] = 'dbp'
 
+theuser = "NAN"
+
 @app.route("/fregdone", methods=["GET","POST"])
 def regdone():
     
@@ -28,6 +30,7 @@ def regdone():
     pswd = request.form['pswd0']
     cursor = mysql.connection.cursor()
     cursor.execute('''INSERT INTO NEWLOGIN VALUES (%s,%s,%s)''',(name,uname,pswd))
+    cursor.execute('''INSERT INTO LOGINDB VALUES (%s,%s)''',(uname,pswd))
     #rgg = gg.fetchall()
     #for x in rgg:
     #    print(x)
@@ -35,6 +38,48 @@ def regdone():
     cursor.close()
     return 'gg'
     
+@app.route("/logincorrect",methods=["GET","POST"])
+def logcheck():
+    uname = request.form['uname0']
+    pswd = request.form['pswd0']
+    cursor = mysql.connection.cursor()
+    cursor.execute('''SELECT * FROM LOGINDB WHERE UNAME = %s AND PSWD = %s''',(uname,pswd))
+    data=cursor.fetchall()
+    if len(data)==0:
+        print("Incorrect Username or Password")
+        return 'reenter'
+    else:
+        DAUSER = uname
+        global theuser
+        theuser = uname
+        print("USER:"+uname)
+        return DAUSER
+
+def var():
+    return theuser
+
+
+@app.route("/gamebuy",methods=["GET","POST"])
+def buygame():
+    uname = var()
+    gamename = request.form['gamename']
+    cursor = mysql.connection.cursor()
+    cursor.execute('''SELECT * FROM GAMEBUY WHERE UNAME = %s AND GAME = %s''',(uname,gamename))
+    data=cursor.fetchall()
+    if len(data)==0:
+        cursor.execute('''INSERT INTO GAMEBUY VALUES (%s,%s)''',(uname,gamename))
+        mysql.connection.commit()
+        cursor.close()
+        return 'GAME BOUGHT'
+    else:
+        print("already bought")
+        return 'already bought'
+    
+
+@app.route("/uc")
+def cu():
+    uname = var()
+    return uname
 
 #    name= request.form['name']
 #    uname=request.form['uname0']
