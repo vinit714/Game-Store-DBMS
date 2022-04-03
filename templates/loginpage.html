@@ -65,15 +65,16 @@
         Sorry, your browser does not support inline SVG.
       </svg>
 
-    <label id="unamel" for="uname0">USERNAME:</label>
-    <input type="text" id="uname0" name="uname0">
+    <form id="logincorrect" action="logincorrect" onsubmit="logcheck()" method="post">
+        <label id="unamel" for="uname0">USERNAME:</label>
+        <input type="text" id="uname0" name="uname0">
 
-    <label id="pswdl" for="pwsd0">PASSWORD:</label>
-    <input type="text" id="pswd0" name="pswd0">
+        <label id="pswdl" for="pwsd0">PASSWORD:</label>
+        <input type="text" id="pswd0" name="pswd0">
 
-    <div style="position:absolute; left: 600px; top:350px;">
-        <button id="submitl" type="button" style="height: 70px;width: 300px;">SUBMIT</button></div>
-
+        <div style="position:absolute; left: 600px; top:350px;">
+            <input type="submit" name="submit" value="CLICKED">
+    </form>
 
 </body>
 
