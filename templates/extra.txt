@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>uname</th>
+            <th>pswd</th>
+        </tr>
+    </table>
+    <?php
+    $conn =mysql_connect("localhost", "root", "AJcena714!!", "dbp")
+    if ($conn->connect_error){
+        die("Connection failed:". $conn-> connect_error);
+    }
+    $sql = "SELECT uname,pswd FROM logindb";
+    $result = $conn->query($sql);
+    if($result->num_rows>0){
+        while($row =$result-> fetch_assoc()){
+        $result = ($row = $result -> fetch_assoc()){
+            echo"<tr><td>".$row["uname"]."</td><td>".$row["pswd"]."</td></tr>";
+            }
+        }
+        echo "</table>"
+    }
+    else{
+        echo "0 result";
+    }
+
+    conn-> close();
+    ?>
+</body>
+
+</html>
+
+button id="submit" type="button" style="height: 70px;width: 300px;"><a href="regdone"></a>SUBMIT</button></div> 
